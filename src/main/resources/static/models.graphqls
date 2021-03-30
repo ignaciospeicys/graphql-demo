@@ -1,9 +1,24 @@
+type Farm {
+    id: Int
+    name: String!
+    chickenCount: Int
+    chickens: [Chicken]
+}
+
 type Chicken {
     id: Int
     name: String!
     age: Int
-    eggsLayed: Int
     breed: String!
+    farm : Farm
+    eggsLayed: Int
+    eggs: [Egg]
+}
+
+type Egg {
+    id: Int
+    chicken: Chicken
+    color: String!
 }
 
 type Query {

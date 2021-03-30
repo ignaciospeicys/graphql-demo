@@ -1,4 +1,4 @@
-package com.accenture.gqldemo.resolver;
+package com.accenture.gqldemo.resolver.query;
 
 import com.accenture.gqldemo.dao.ChickenDAO;
 import com.accenture.gqldemo.enums.BreedEnum;
@@ -24,19 +24,23 @@ public class ChickenQueryResolver implements GraphQLQueryResolver {
     private ChickenDAO repository;
 
     public List<Chicken> chickens() {
+        log.info("fetching all chickens");
         return repository.findAll();
     }
 
     public Chicken chickenById(Integer id) {
+        log.info("fetching chicken by id: {}", id);
         return repository.findById(id).orElse(null);
     }
 
     public Chicken chickenByName(String name) {
+        log.info("fetching chicken by name: {}", name);
         return repository.findByName(name);
     }
 
     public List<Chicken> chickensByBreed(String breed) {
         BreedEnum breedEnum = BreedEnum.findByName(breed);
+        log.info("fetching chickens by breed: {}", breedEnum.name());
         return repository.findAllByBreed(breedEnum);
     }
 

@@ -1,8 +1,9 @@
-package com.accenture.gqldemo.resolver;
+package com.accenture.gqldemo.resolver.mutation;
 
 import com.accenture.gqldemo.dao.ChickenDAO;
 import com.accenture.gqldemo.enums.BreedEnum;
 import com.accenture.gqldemo.model.Chicken;
+import com.accenture.gqldemo.resolver.query.ChickenQueryResolver;
 import com.coxautodev.graphql.tools.GraphQLMutationResolver;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;

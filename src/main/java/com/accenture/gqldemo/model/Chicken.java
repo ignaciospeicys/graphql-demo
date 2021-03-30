@@ -10,6 +10,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.util.HashSet;
+import java.util.Set;
 
 @Data
 @Builder
@@ -25,9 +27,12 @@ public class Chicken {
 
     private int age;
 
+    @Convert(converter = BreedEnumConverter.class)
+    private BreedEnum breed;
+
     @Builder.Default
     private int eggsLayed = 0;
 
-    @Convert(converter = BreedEnumConverter.class)
-    private BreedEnum breed;
+    @Builder.Default
+    private Set<Egg> eggs = new HashSet<>();
 }
