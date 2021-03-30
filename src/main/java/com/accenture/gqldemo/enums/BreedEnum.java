@@ -31,7 +31,7 @@ public enum BreedEnum {
         return result != null ? result : OTHER;
     }
 
-    public BreedEnum findByName(String name) {
+    public static BreedEnum findByName(String name) {
         BreedEnum result = null;
         for (BreedEnum breed : values()) {
 

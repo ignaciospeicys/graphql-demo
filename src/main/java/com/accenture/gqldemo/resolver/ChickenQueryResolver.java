@@ -36,7 +36,8 @@ public class ChickenQueryResolver implements GraphQLQueryResolver {
     }
 
     public List<Chicken> chickensByBreed(String breed) {
-        BreedEnum breedEnum = BreedEnum.valueOf(breed);
+        BreedEnum breedEnum = BreedEnum.findByName(breed);
         return repository.findAllByBreed(breedEnum);
     }
+
 }

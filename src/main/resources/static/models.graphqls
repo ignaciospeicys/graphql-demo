@@ -12,3 +12,7 @@ type Query {
     chickenByName(name: String): Chicken
     chickensByBreed(breed: String) : [Chicken]!
 }
+
+type Mutation {
+    addChicken(name: String, age: Int, breed: String): Chicken
+}

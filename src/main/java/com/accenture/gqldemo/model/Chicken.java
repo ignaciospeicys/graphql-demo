@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Data
 @Builder
 @Entity
-@Table(name = "CHICKEN")
+@Table(name = "CHICKEN_ENTITY")
 public class Chicken {
 
     @Id
@@ -25,7 +25,8 @@ public class Chicken {
 
     private int age;
 
-    private int eggsLayed;
+    @Builder.Default
+    private int eggsLayed = 0;
 
     @Convert(converter = BreedEnumConverter.class)
     private BreedEnum breed;
