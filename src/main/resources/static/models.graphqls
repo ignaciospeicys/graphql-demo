@@ -1,4 +1,5 @@
 type Chicken {
+    id: Int
     name: String!
     age: Int
     eggsLayed: Int
@@ -7,4 +8,7 @@ type Chicken {
 
 type Query {
     chickens: [Chicken]!
+    chickenById(id: Int) : Chicken
+    chickenByName(name: String): Chicken
+    chickensByBreed(breed: String) : [Chicken]!
 }

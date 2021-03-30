@@ -19,7 +19,19 @@ public enum BreedEnum {
         this.identifier = identifier;
     }
 
-    private BreedEnum findByName(String name) {
+    public static BreedEnum findById(Integer identifier) {
+        BreedEnum result = null;
+        for (BreedEnum breed : values()) {
+
+            if (identifier == breed.identifier) {
+                result = breed;
+                break;
+            }
+        }
+        return result != null ? result : OTHER;
+    }
+
+    public BreedEnum findByName(String name) {
         BreedEnum result = null;
         for (BreedEnum breed : values()) {
 
@@ -29,5 +41,9 @@ public enum BreedEnum {
             }
         }
         return result != null ? result : OTHER;
+    }
+
+    public int getIdentifier() {
+        return this.identifier;
     }
 }
