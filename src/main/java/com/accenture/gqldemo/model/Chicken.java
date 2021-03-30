@@ -14,7 +14,7 @@ import javax.persistence.Table;
 @Data
 @Builder
 @Entity
-@Table(name = "CHICKEN_ENTITY")
+@Table
 public class Chicken {
 
     @Id
