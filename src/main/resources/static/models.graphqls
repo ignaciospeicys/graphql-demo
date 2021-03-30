@@ -1,0 +1,10 @@
+type Chicken {
+    name: String!
+    age: Int
+    eggsLayed: Int
+    breed: String!
+}
+
+type Query {
+    chickens: [Chicken]!
+}
