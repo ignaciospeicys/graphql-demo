@@ -22,14 +22,16 @@ type Egg {
 }
 
 type Query {
+    farmById(id: Int) : Farm
     chickens: [Chicken]!
     chickenById(id: Int) : Chicken
     chickenByName(name: String): Chicken
     chickensByBreed(breed: String) : [Chicken]!
+    eggById(id: Int) : Egg
 }
 
 type Mutation {
     addFarm(name: String): Farm
     addChicken(name: String, age: Int, breed: String, farmId: Int): Chicken
-    addEgg(name: String, color: String, chickenId: Int):Egg
+    addEgg(color: String, chickenId: Int): Egg
 }
