@@ -7,9 +7,13 @@ Objective: Create a web application with CRUD functionality using GraphQL for th
 -	A Farm has many chickens and a chicken can have many eggs.
 
 -	We want to be able to:
+     
         -	See how many chickens are on a farm.
+             
         -	Delete chickens off the farm.
+             
         -	See how many eggs a chicken has produced.
+             
         -	Add/update eggs produced by a chicken.
 
 -------------------------
@@ -26,7 +30,7 @@ Objective: Create a web application with CRUD functionality using GraphQL for th
 
 # Lombok
 
-###IntelliJ Setup:
+##IntelliJ Setup:
 Preferences -> Compiler -> Annotation Processors -> make sure "Enable annotation processing" is enabled.
 
 Don't forget to download the Lombok plugin for the IDE when applicable.

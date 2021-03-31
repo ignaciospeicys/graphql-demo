@@ -5,11 +5,7 @@ import com.accenture.gqldemo.enums.converter.BreedEnumConverter;
 import lombok.Builder;
 import lombok.Data;
 
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +25,16 @@ public class Chicken {
 
     @Convert(converter = BreedEnumConverter.class)
     private BreedEnum breed;
+
+    @ManyToOne
+    @Column(insertable = false, updatable = false)
+    private Farm farm;
+
+    /**
+     * We use this field for inserts to improve performance while relying on the db's integrity via Foreign Keys
+     */
+    @Column(name = "farm")
+    private int farmId;
 
     @Builder.Default
     private int eggsLayed = 0;

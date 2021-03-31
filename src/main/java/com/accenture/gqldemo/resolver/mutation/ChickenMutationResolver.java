@@ -19,11 +19,13 @@ public class ChickenMutationResolver implements GraphQLMutationResolver {
     @Autowired
     private ChickenDAO repository;
 
-    public Chicken addChicken(String name, Integer age, String breed) {
+    public Chicken addChicken(String name, Integer age, String breed, Integer farmId) {
+        log.info("creating new chicken of breed: {} belonging to farm id: {}", breed, farmId);
         Chicken newChicken = Chicken.builder()
                 .name(name)
                 .age(age)
                 .breed(BreedEnum.findByName(breed))
+                .farmId(farmId)
                 .build();
         repository.save(newChicken);
         return newChicken;

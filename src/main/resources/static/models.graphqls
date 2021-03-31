@@ -29,5 +29,7 @@ type Query {
 }
 
 type Mutation {
-    addChicken(name: String, age: Int, breed: String): Chicken
+    addFarm(name: String): Farm
+    addChicken(name: String, age: Int, breed: String, farmId: Int): Chicken
+    addEgg(name: String, color: String, chickenId: Int):Egg
 }

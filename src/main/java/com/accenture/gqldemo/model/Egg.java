@@ -19,6 +19,9 @@ public class Egg {
     @ManyToOne
     private Chicken chicken;
 
+    @Column(name = "chicken", insertable = false, updatable = false)
+    private Integer chickenId;
+
     @Enumerated(EnumType.STRING)
     private EggColorEnum eggColor;
 }
