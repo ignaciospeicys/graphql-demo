@@ -27,7 +27,7 @@ public class Chicken {
     private BreedEnum breed;
 
     @ManyToOne
-    @Column(insertable = false, updatable = false)
+    @JoinColumn(insertable = false, updatable = false)
     private Farm farm;
 
     /**
@@ -40,5 +40,6 @@ public class Chicken {
     private int eggsLayed = 0;
 
     @Builder.Default
+    @OneToMany
     private Set<Egg> eggs = new HashSet<>();
 }

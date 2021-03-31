@@ -1,0 +1,14 @@
+type Farm {
+    id: Int
+    name: String!
+    chickenCount: Int
+    chickens: [Chicken]
+}
+
+extend type Query {
+    farmById(id: Int) : Farm
+}
+
+extend type Mutation {
+    addFarm(name: String): Farm
+}

@@ -24,5 +24,5 @@ public class Farm {
 
     @OneToMany
     @Builder.Default
-    private Set<Chicken> chickenSet = new HashSet<>();
+    private Set<Chicken> chickens = new HashSet<>();
 }

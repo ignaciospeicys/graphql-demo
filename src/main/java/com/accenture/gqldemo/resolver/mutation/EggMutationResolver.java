@@ -18,7 +18,7 @@ public class EggMutationResolver implements GraphQLMutationResolver {
     public Egg addEgg(String color, Integer chickenId) {
         log.info("creating new egg belonging to chicken id: {}", chickenId);
         Egg newEgg = Egg.builder()
-                .eggColor(EggColorEnum.valueOf(color))
+                .color(EggColorEnum.valueOf(color))
                 .chickenId(chickenId)
                 .build();
         repository.save(newEgg);

@@ -17,11 +17,12 @@ public class Egg {
     private int id;
 
     @ManyToOne
+    @JoinColumn(name = "chicken", insertable = false, updatable = false)
     private Chicken chicken;
 
-    @Column(name = "chicken", insertable = false, updatable = false)
+    @Column(name = "chicken")
     private Integer chickenId;
 
     @Enumerated(EnumType.STRING)
-    private EggColorEnum eggColor;
+    private EggColorEnum color;
 }
