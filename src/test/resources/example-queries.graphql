@@ -1,0 +1,35 @@
+#this file contains several example queries utilized to test the API
+#these can be used in several different ways:
+#   1)via GraphiQL (graphical interface exposed at /graphiql).
+#   2)via HTTP using clients such as POSTMAN. If in doubt, read "serving over http" on GraphQL's official documentation.
+
+#adds a new farm
+mutation {
+    addFarm(name:"Sunshine Land") {id name}
+}
+
+#adds a new chicken linked to a farm of id: 1
+mutation {
+    addChicken(name:"Claudio",age: 2, breed: "white", farmId: 1) {id name age}
+}
+
+#queries for a chicken of id: 2, and requests the following fields
+query {
+    chickenById(id: 2) {
+        id
+        name
+        age
+    }
+}
+
+#queries the exact same chicken as before, but it requests the name of the farm the chicken belongs to, as well.
+query {
+    chickenById(id: 2) {
+        id
+        name
+        age
+        farm {
+            name
+        }
+    }
+}

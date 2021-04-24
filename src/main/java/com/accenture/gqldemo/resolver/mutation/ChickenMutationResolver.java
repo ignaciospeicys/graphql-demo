@@ -30,4 +30,16 @@ public class ChickenMutationResolver implements GraphQLMutationResolver {
         repository.save(newChicken);
         return newChicken;
     }
+
+    public Boolean deleteChickenById(Integer id) {
+        log.info("deleting chicken by id: {}", id);
+        Boolean success = false;
+        try {
+            repository.deleteById(id);
+            success = true;
+        } catch (Exception ex) {
+            log.error("exception thrown while deleting chicken by id, message: {}", ex.getMessage());
+        }
+        return success;
+    }
 }

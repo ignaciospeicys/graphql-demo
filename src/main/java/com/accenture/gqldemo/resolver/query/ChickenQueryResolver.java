@@ -2,13 +2,18 @@ package com.accenture.gqldemo.resolver.query;
 
 import com.accenture.gqldemo.dao.ChickenDAO;
 import com.accenture.gqldemo.enums.BreedEnum;
+import com.accenture.gqldemo.exception.ElementNotFoundException;
 import com.accenture.gqldemo.model.Chicken;
 import com.coxautodev.graphql.tools.GraphQLQueryResolver;
+import graphql.schema.DataFetchingEnvironment;
+import graphql.schema.DataFetchingFieldSelectionSet;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * provides a high level mechanism for routing queries
@@ -28,9 +33,14 @@ public class ChickenQueryResolver implements GraphQLQueryResolver {
         return repository.findAll();
     }
 
-    public Chicken chickenById(Integer id) {
+    @Transactional
+    public Chicken chickenById(Integer id, DataFetchingEnvironment env) throws ElementNotFoundException {
         log.info("fetching chicken by id: {}", id);
-        return repository.findById(id).orElse(null);
+        DataFetchingFieldSelectionSet selectionSet = env.getSelectionSet();
+        Map<String, Map<String, Object>> arguments = selectionSet.getArguments();
+        Chicken chicken = repository.findById(id).orElseThrow(ElementNotFoundException::new);
+        if (selectionSet.contains("farm")) chicken.getFarm(); //TODO: standarize through enum or depenency method
+        return chicken;
     }
 
     public Chicken chickenByName(String name) {

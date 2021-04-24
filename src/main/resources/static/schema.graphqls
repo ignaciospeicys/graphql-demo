@@ -1,3 +1,10 @@
+type Farm {
+    id: Int
+    name: String!
+    chickenCount: Int
+    chickens: [Chicken]
+}
+
 type Chicken {
     id: Int
     name: String!
@@ -8,13 +15,28 @@ type Chicken {
     eggs: [Egg]
 }
 
+type Egg {
+    id: Int
+    chicken: Chicken
+    color: String!
+}
+
 type Query {
+    farmById(id: Int) : Farm
+
     chickens: [Chicken]!
     chickenById(id: Int) : Chicken
     chickenByName(name: String): Chicken
     chickensByBreed(breed: String) : [Chicken]!
+
+    eggById(id: Int) : Egg
 }
 
 type Mutation {
+    addFarm(name: String): Farm
+
     addChicken(name: String, age: Int, breed: String, farmId: Int): Chicken
+    deleteChickenById(id: Int): Boolean
+
+    addEgg(color: String, chickenId: Int): Egg
 }

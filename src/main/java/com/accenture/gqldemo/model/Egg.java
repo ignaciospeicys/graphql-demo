@@ -1,13 +1,17 @@
 package com.accenture.gqldemo.model;
 
 import com.accenture.gqldemo.enums.EggColorEnum;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
-@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table
 public class Egg {
@@ -16,7 +20,7 @@ public class Egg {
     @GeneratedValue
     private int id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "chicken", insertable = false, updatable = false)
     private Chicken chicken;
 

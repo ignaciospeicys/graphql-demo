@@ -2,15 +2,19 @@ package com.accenture.gqldemo.model;
 
 import com.accenture.gqldemo.enums.BreedEnum;
 import com.accenture.gqldemo.enums.converter.BreedEnumConverter;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-@Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
 @Table
 public class Chicken {
@@ -26,8 +30,8 @@ public class Chicken {
     @Convert(converter = BreedEnumConverter.class)
     private BreedEnum breed;
 
-    @ManyToOne
-    @JoinColumn(insertable = false, updatable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "farm", insertable = false, updatable = false)
     private Farm farm;
 
     /**
@@ -40,6 +44,6 @@ public class Chicken {
     private int eggsLayed = 0;
 
     @Builder.Default
-    @OneToMany
+    @OneToMany(fetch = FetchType.LAZY)
     private Set<Egg> eggs = new HashSet<>();
 }
